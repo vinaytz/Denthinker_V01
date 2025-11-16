@@ -66,12 +66,15 @@ export default function WhatWeDo() {
     <section
       ref={sectionRef}
       id="initiatives"
-      className="relative py-24 bg-gradient-to-b from-white to-amber-50 overflow-hidden"
+      className="relative py-32 bg-gradient-to-b from-amber-50/20 via-white to-amber-50/40 overflow-hidden"
     >
-      <div className="text-center mb-16 px-6">
-        <h2 className="font-playfair text-5xl font-bold text-gray-900">
+      <div className="text-center mb-20 px-6">
+        <h2 className="font-playfair text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight">
           What We Do
         </h2>
+        <p className="font-inter text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+          Every initiative is a step toward hope, dignity, and a brighter tomorrow.
+        </p>
       </div>
 
       <div
@@ -84,18 +87,22 @@ export default function WhatWeDo() {
             {[...initiatives, ...initiatives].map((initiative, index) => (
               <div
                 key={index}
-                className="relative flex-shrink-0 w-[400px] h-[500px] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer"
+                className="relative flex-shrink-0 w-[400px] h-[500px] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(0,0,0,0.2)] group cursor-pointer border-4 border-white"
               >
                 <img
                   src={initiative.image}
                   alt={initiative.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  style={{ filter: 'contrast(1.08) saturate(1.15) brightness(0.98)' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-playfair text-3xl font-bold text-white opacity-90 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-amber-900/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute inset-0 film-grain opacity-20" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                  <h3 className="font-playfair text-3xl font-bold text-white opacity-95 group-hover:opacity-100 transition-opacity cinematic-glow">
                     {initiative.title}
                   </h3>
+                  <div className="w-16 h-1 bg-amber-400 mt-3 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                 </div>
               </div>
             ))}
@@ -103,9 +110,9 @@ export default function WhatWeDo() {
         </div>
       </div>
 
-      <div className="text-center mt-16">
-        <button className="px-8 py-3 bg-amber-600 text-white rounded-full font-poppins text-base font-medium shadow-lg hover:bg-amber-700 hover:shadow-amber-300/50 transition-all hover:scale-105">
-          View All
+      <div className="text-center mt-20">
+        <button className="px-10 py-4 bg-gradient-to-br from-amber-500 via-amber-600 to-orange-600 text-white rounded-full font-inter text-base font-medium shadow-[0_8px_30px_rgba(251,191,36,0.4)] hover:shadow-[0_12px_40px_rgba(251,191,36,0.6)] transition-all duration-500 hover:scale-105 hover:-translate-y-1 golden-highlight">
+          View All Initiatives
         </button>
       </div>
     </section>

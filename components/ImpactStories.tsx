@@ -65,62 +65,73 @@ export default function ImpactStories() {
     <section
       ref={sectionRef}
       id="stories"
-      className="relative py-24 px-6 bg-gradient-to-b from-amber-50 to-white overflow-hidden"
+      className="relative py-32 px-6 bg-gradient-to-b from-amber-50/40 via-orange-50/20 to-white overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-5xl font-bold text-gray-900">
+        <div className="text-center mb-20">
+          <h2 className="font-playfair text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight mb-4">
             Impact Stories
           </h2>
+          <p className="font-cormorant text-2xl text-gray-600 italic">
+            Their voices. Their dreams. Their transformation.
+          </p>
         </div>
 
         <div className="relative">
-          <div ref={slideRef} className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+          <div ref={slideRef} className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.2)] border-8 border-white warm-vignette">
               <img
                 src={stories[currentIndex].image}
                 alt={stories[currentIndex].name}
                 className="w-full h-full object-cover animate-breathe"
+                style={{ filter: 'contrast(1.08) saturate(1.12) brightness(1.02)' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-amber-900/5" />
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10" />
+              <div className="absolute inset-0 film-grain opacity-25" />
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-8 paper-texture p-10 rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
               <div>
-                <p className="font-lora text-3xl text-gray-800 italic leading-relaxed mb-4">
+                <p className="font-crimson text-3xl lg:text-4xl text-gray-800 italic leading-[1.6] mb-6">
                   "{stories[currentIndex].quote}"
                 </p>
-                <p className="font-poppins text-xl text-gray-600">
-                  - {stories[currentIndex].name}, {stories[currentIndex].age} years old
-                </p>
+                <div className="border-t-2 border-amber-300 pt-6">
+                  <p className="font-inter text-xl text-gray-700 font-medium">
+                    {stories[currentIndex].name}
+                  </p>
+                  <p className="font-inter text-base text-gray-500 mt-1">
+                    {stories[currentIndex].age} years old
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-amber-50 transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-14 h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] flex items-center justify-center hover:bg-amber-50 hover:scale-110 transition-all duration-500 border-2 border-amber-100 golden-highlight"
             aria-label="Previous story"
           >
-            <span className="font-playfair text-3xl text-gray-700">&lt;</span>
+            <span className="font-playfair text-3xl text-amber-700">&lt;</span>
           </button>
 
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-amber-50 transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-14 h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] flex items-center justify-center hover:bg-amber-50 hover:scale-110 transition-all duration-500 border-2 border-amber-100 golden-highlight"
             aria-label="Next story"
           >
-            <span className="font-playfair text-3xl text-gray-700">&gt;</span>
+            <span className="font-playfair text-3xl text-amber-700">&gt;</span>
           </button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-3 mt-12">
           {stories.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-amber-600 w-8' : 'bg-gray-300'
+              className={`h-2 rounded-full transition-all duration-500 ${
+                index === currentIndex ? 'bg-gradient-to-r from-amber-500 to-orange-500 w-12 shadow-[0_2px_10px_rgba(251,191,36,0.5)]' : 'bg-gray-300 w-2 hover:bg-gray-400'
               }`}
               aria-label={`Go to story ${index + 1}`}
             />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -10,10 +10,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-playfair: 'Playfair Display', serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
   --font-inter: 'Inter', sans-serif;
   --font-lora: 'Lora', serif;
-  --font-dancing: 'Dancing Script', cursive;
+  --font-crimson: 'Crimson Text', serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,16 +36,29 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-poppins);
+  font-family: var(--font-inter);
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(251, 146, 60, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .font-playfair {
   font-family: var(--font-playfair);
 }
 
-.font-poppins {
-  font-family: var(--font-poppins);
+.font-cormorant {
+  font-family: var(--font-cormorant);
 }
 
 .font-inter {
@@ -56,46 +69,51 @@ body {
   font-family: var(--font-lora);
 }
 
-.font-dancing {
-  font-family: var(--font-dancing);
+.font-crimson {
+  font-family: var(--font-crimson);
 }
 
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.6);
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.8), rgba(251, 191, 36, 0));
   border-radius: 50%;
-  animation: float 6s infinite ease-in-out;
+  animation: float 8s infinite ease-in-out;
+  filter: blur(0.5px);
 }
 
 .particle:nth-child(1) {
-  top: 20%;
-  left: 20%;
+  top: 15%;
+  left: 10%;
   animation-delay: 0s;
+  width: 3px;
+  height: 3px;
 }
 
 .particle:nth-child(2) {
-  top: 60%;
-  left: 80%;
-  animation-delay: 2s;
+  top: 70%;
+  left: 85%;
+  animation-delay: 3s;
 }
 
 .particle:nth-child(3) {
   top: 40%;
-  left: 50%;
-  animation-delay: 4s;
+  left: 60%;
+  animation-delay: 6s;
+  width: 2.5px;
+  height: 2.5px;
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: translate(0, 0);
-    opacity: 0.3;
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
   }
   50% {
-    transform: translate(20px, -20px);
-    opacity: 0.8;
+    transform: translate(15px, -30px) scale(1.2);
+    opacity: 0.5;
   }
 }
 
@@ -105,12 +123,28 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 }
 
 .animate-breathe {
-  animation: breathe 8s infinite ease-in-out;
+  animation: breathe 12s infinite ease-in-out;
+}
+
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 6s infinite ease-in-out;
 }
 
 @keyframes shimmer {
@@ -124,13 +158,84 @@ body {
 
 .animate-shimmer {
   background: linear-gradient(
-    90deg,
-    rgba(251, 191, 36, 1) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(251, 146, 60, 1) 100%
+    120deg,
+    #f59e0b 0%,
+    #fbbf24 25%,
+    #fef3c7 50%,
+    #fbbf24 75%,
+    #f59e0b 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: shimmer 4s infinite ease-in-out;
+}
+
+.film-grain {
+  position: relative;
+}
+
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.cinematic-glow {
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.2),
+               0 0 40px rgba(251, 191, 36, 0.1),
+               0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.warm-vignette {
+  position: relative;
+}
+
+.warm-vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.paper-texture {
+  background-image:
+    linear-gradient(to bottom, rgba(254, 252, 247, 0.9), rgba(255, 251, 240, 0.95)),
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23fef7ed' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23paper)'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+}
+
+.golden-highlight {
+  position: relative;
+}
+
+.golden-highlight::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), transparent 40%, transparent 60%, rgba(251, 146, 60, 0.2));
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.golden-highlight:hover::after {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
